@@ -98,7 +98,13 @@ private:
 
 class createRectangle : public createQuad {
 public:
-    createRectangle(int s_a, int s_d) : createQuad(s_a, s_d, s_a, s_d, 90, 90, 90, 90, "Квадрат") {
+    createRectangle(int s_a, int s_d) : createQuad(s_a, s_d, s_a, s_d, 90, 90, 90, 90, "Прямоугольник") {
+    }
+};
+
+class createSquare : public createQuad {
+public:
+    createSquare(int s_a) : createQuad(s_a, s_a, s_a, s_a, 90, 90, 90, 90, "Квадрат") {
     }
 };
 
@@ -150,6 +156,9 @@ int main()
     createRectangle rectaingle(40, 20);
     printInfoQuad(&rectaingle);
 
+    createSquare square(15);
+    printInfoQuad(&square);
+    
     createParallelogram parall(10, 20, 100, 80);
     printInfoQuad(&parall);
 
