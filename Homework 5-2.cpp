@@ -9,7 +9,7 @@ public:
     std::string getName() { return name; }
 
     virtual void info() {
-        std::cout << getName() << std::endl;
+        std::cout << name << ": " << std::endl;
     }
 
 private:
@@ -38,7 +38,7 @@ public:
     int get_corner_c() { return corner_c; }
 
     void info() override {
-        std::cout << getName() << ": " << std::endl;
+        createShape::info();
         std::cout << "Стороны: a = " << get_side_a() << ", b = " << get_side_b() << ", c = " << get_side_c() << std::endl;
         std::cout << "Углы: A = " << get_corner_a() << ", B = " << get_corner_b() << ", C = " << get_corner_c() << std::endl;
         std::cout << std::endl;
@@ -162,11 +162,9 @@ int main()
 
     createSquare square(15);
     printInfo(&square);
-
-    createSquare square(15);
-    printInfoQuad(&square);
     
     createParallelogram parall(10, 20, 100, 80);
+    printInfo(&parall);
 
     createRhomd rhomd(10, 60, 100);
 }
