@@ -163,6 +163,9 @@ int main()
     createSquare square(15);
     printInfo(&square);
 
+    createSquare square(15);
+    printInfoQuad(&square);
+    
     createParallelogram parall(10, 20, 100, 80);
 
     createRhomd rhomd(10, 60, 100);
