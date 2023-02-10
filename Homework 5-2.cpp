@@ -7,6 +7,11 @@ public:
         side = side_;
     }
     std::string getName() { return name; }
+
+    virtual void info() {
+        std::cout << getName() << std::endl;
+    }
+
 private:
     std::string name;
     int side;
@@ -31,6 +36,13 @@ public:
     int get_corner_a() { return corner_a; }
     int get_corner_b() { return corner_b; }
     int get_corner_c() { return corner_c; }
+
+    void info() override {
+        std::cout << getName() << ": " << std::endl;
+        std::cout << "Стороны: a = " << get_side_a() << ", b = " << get_side_b() << ", c = " << get_side_c() << std::endl;
+        std::cout << "Углы: A = " << get_corner_a() << ", B = " << get_corner_b() << ", C = " << get_corner_c() << std::endl;
+        std::cout << std::endl;
+    }
 
 private:
     int side_a;
@@ -84,6 +96,13 @@ public:
     int get_corner_c() { return corner_c; }
     int get_corner_d() { return corner_d; }
 
+    void info() override {
+        std::cout << getName() << ": " << std::endl;
+        std::cout << "Стороны: a = " << get_side_a() << ", b = " << get_side_b() << ", c = " << get_side_c() << ", d = " << get_side_d() << std::endl;
+        std::cout << "Углы: A = " << get_corner_a() << ", B = " << get_corner_b() << ", C = " << get_corner_c() << ", D = " << get_corner_d() << std::endl;
+        std::cout << std::endl;
+    }
+
 private:
     int side_a;
     int side_b;
@@ -98,7 +117,13 @@ private:
 
 class createRectangle : public createQuad {
 public:
-    createRectangle(int s_a, int s_d) : createQuad(s_a, s_d, s_a, s_d, 90, 90, 90, 90, "Квадрат") {
+    createRectangle(int s_a, int s_d) : createQuad(s_a, s_d, s_a, s_d, 90, 90, 90, 90, "Прямоугольник") {
+    }
+};
+
+class createSquare : public createQuad {
+public:
+    createSquare(int s_a) : createQuad(s_a, s_a, s_a, s_a, 90, 90, 90, 90, "Квадрат") {
     }
 };
 
@@ -114,18 +139,8 @@ public:
     }
 };
 
-void printInfoTriangle(createTriangle* shape) {
-    std::cout << shape->getName() << ": " << std::endl;
-    std::cout << "Стороны: a = " << shape->get_side_a() << ", b = " << shape->get_side_b() << ", c = " << shape->get_side_c() << std::endl;
-    std::cout << "Углы: A = " << shape->get_corner_a() << ", B = " << shape->get_corner_b() << ", C = " << shape->get_corner_c() << std::endl;
-    std::cout << std::endl;
-}
-
-void printInfoQuad(createQuad* shape) {
-    std::cout << shape->getName() << ": " << std::endl;
-    std::cout << "Стороны: a = " << shape->get_side_a() << ", b = " << shape->get_side_b() << ", c = " << shape->get_side_c() << ", d = " << shape->get_side_d() << std::endl;
-    std::cout << "Углы: A = " << shape->get_corner_a() << ", B = " << shape->get_corner_b() << ", C = " << shape->get_corner_c() << ", D = " << shape->get_corner_d() << std::endl;
-    std::cout << std::endl;
+void printInfo(createShape* shape) {
+    shape->info();
 }
 
 int main()
@@ -133,26 +148,22 @@ int main()
     setlocale(LC_ALL, "Russian");
 
     createTriangle triangle(5, 5, 2, 80, 30, 70);
-    printInfoTriangle(&triangle);
+    printInfo(&triangle);
 
     createRightTriangle right_triangle(5, 3, 4, 30, 60);
-    printInfoTriangle(&right_triangle);
 
     createIsoscelesTriangle isosceles_triangle(10, 5, 90, 45);
-    printInfoTriangle(&isosceles_triangle);
 
     createEquilateralTriangle equal_teiangle(13);
-    printInfoTriangle(&equal_teiangle);
 
     createQuad quad(10, 20, 40, 22, 80, 130, 70, 120);
-    printInfoQuad(&quad);
 
     createRectangle rectaingle(40, 20);
-    printInfoQuad(&rectaingle);
+
+    createSquare square(15);
+    printInfo(&square);
 
     createParallelogram parall(10, 20, 100, 80);
-    printInfoQuad(&parall);
 
     createRhomd rhomd(10, 60, 100);
-    printInfoQuad(&rhomd);
 }
